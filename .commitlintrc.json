@@ -1,0 +1,178 @@
+{
+  "extends": [
+    "@commitlint/config-conventional"
+  ],
+  "rules": {
+    "type-enum": [
+      2,
+      "always",
+      [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "ci",
+        "build",
+        "revert"
+      ]
+    ],
+    "type-case": [
+      2,
+      "always",
+      "lower-case"
+    ],
+    "type-empty": [
+      2,
+      "never"
+    ],
+    "scope-case": [
+      2,
+      "always",
+      "lower-case"
+    ],
+    "subject-case": [
+      2,
+      "never",
+      [
+        "upper-case",
+        "pascal-case"
+      ]
+    ],
+    "subject-empty": [
+      2,
+      "never"
+    ],
+    "subject-full-stop": [
+      2,
+      "never",
+      "."
+    ],
+    "subject-max-length": [
+      2,
+      "always",
+      100
+    ],
+    "header-max-length": [
+      2,
+      "always",
+      100
+    ],
+    "body-leading-blank": [
+      1,
+      "always"
+    ],
+    "footer-leading-blank": [
+      1,
+      "always"
+    ]
+  },
+  "prompt": {
+    "messages": {
+      "skip": ":skip",
+      "max": "Superior a %d caracteres",
+      "min": "Inferior a %d caracteres",
+      "emptyWarning": "O campo não pode estar vazio",
+      "upperLimitWarning": "O limite de caracteres é excedido",
+      "lowerLimitWarning": "Os caracteres são menores que o limite inferior"
+    },
+    "questions": {
+      "type": {
+        "description": "Selecione o tipo de alteração que você está comitando:",
+        "enum": {
+          "feat": {
+            "description": "Nova funcionalidade",
+            "title": "Features",
+            "emoji": "✨"
+          },
+          "fix": {
+            "description": "Correção de bug",
+            "title": "Bug Fixes",
+            "emoji": "🐛"
+          },
+          "docs": {
+            "description": "Alterações na documentação",
+            "title": "Documentation",
+            "emoji": "📚"
+          },
+          "style": {
+            "description": "Alterações que não afetam o significado do código (espaços em branco, formatação, pontos e vírgulas faltantes, etc)",
+            "title": "Styles",
+            "emoji": "💎"
+          },
+          "refactor": {
+            "description": "Alteração de código que não corrige um bug nem adiciona uma funcionalidade",
+            "title": "Code Refactoring",
+            "emoji": "📦"
+          },
+          "perf": {
+            "description": "Alteração de código que melhora o desempenho",
+            "title": "Performance Improvements",
+            "emoji": "🚀"
+          },
+          "test": {
+            "description": "Adição de testes faltantes ou correção de testes existentes",
+            "title": "Tests",
+            "emoji": "🚨"
+          },
+          "build": {
+            "description": "Alterações que afetam o sistema de build ou dependências externas (exemplos de escopos: gulp, broccoli, npm)",
+            "title": "Builds",
+            "emoji": "🛠"
+          },
+          "ci": {
+            "description": "Alterações nos arquivos de configuração e scripts da CI (exemplos de escopos: Travis, Circle, BrowserStack, SauceLabs)",
+            "title": "Continuous Integrations",
+            "emoji": "⚙️"
+          },
+          "chore": {
+            "description": "Outras alterações que não modificam arquivos src ou test",
+            "title": "Chores",
+            "emoji": "♻️"
+          },
+          "revert": {
+            "description": "Reverte um commit anterior",
+            "title": "Reverts",
+            "emoji": "🗑"
+          }
+        }
+      },
+      "scope": {
+        "description": "Qual é o escopo desta mudança (ex: nome do componente ou arquivo)"
+      },
+      "subject": {
+        "description": "Escreva uma descrição curta e imperativa da mudança"
+      },
+      "body": {
+        "description": "Forneça uma descrição mais longa da mudança"
+      },
+      "isBreaking": {
+        "description": "Existem mudanças que quebram a compatibilidade?"
+      },
+      "breakingBody": {
+        "description": "Um commit BREAKING CHANGE requer um corpo. Por favor, insira uma descrição mais longa do commit em si"
+      },
+      "breaking": {
+        "description": "Descreva as mudanças que quebram a compatibilidade"
+      },
+      "isIssueAffected": {
+        "description": "Esta mudança afeta alguma issue aberta?"
+      },
+      "issuesBody": {
+        "description": "Se as issues são fechadas, o commit requer um corpo. Por favor, insira uma descrição mais longa do commit em si"
+      },
+      "issues": {
+        "description": "Adicione referências de issues (ex: \"fix #123\", \"re #123\")"
+      },
+      "subject-empty": {
+        "description": "O campo não pode estar vazio"
+      },
+      "type-empty": {
+        "description": "O campo não pode estar vazio"
+      }
+    }
+  }
+}
