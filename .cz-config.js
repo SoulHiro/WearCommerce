@@ -16,17 +16,16 @@ const config = {
   ],
   messages: {
     type: "Selecione o tipo de alteração:",
-    scope: "Escopo desta alteração (opcional):",
     customScope: "Defina o escopo personalizado:",
     subject: "Escreva uma descrição breve e imperativa da alteração:\n",
     body: 'Descrição mais longa da alteração (opcional). Use "|" para quebra de linha:\n',
     breaking: 'Alguma alteração quebrando o código? (opcional):\n',
-    footer: 'Issues relacionadas (ex: #123, #456) (opcional):\n',
+    coauthors: 'Co-Author do commit (opcional):\n',
     confirmCommit: 'Você deseja prosseguir com o commit acima?'
   },
   allowCustomScopes: true,
   allowBreakingChanges: ['feat', 'fix'],
-  subjectLimit: 100,
+  subjectLimit: 150,
 };
 
 function prompter(cz, commit) {
@@ -36,11 +35,6 @@ function prompter(cz, commit) {
       name: 'type',
       message: config.messages.type,
       choices: config.types
-    },
-    {
-      type: 'input',
-      name: 'scope',
-      message: config.messages.scope
     },
     {
       type: 'input',
@@ -65,15 +59,25 @@ function prompter(cz, commit) {
     },
     {
       type: 'input',
-      name: 'footer',
-      message: config.messages.footer
+      name: 'coauthors',
+      message: 'Co-autores (nome <email>, nome <email>...) (opcional):'
     }
   ]).then(answers => {
     const scope = answers.scope ? `(${answers.scope})` : '';
     const breaking = answers.breaking ? `\n\nBREAKING CHANGE: ${answers.breaking}` : '';
-    const footer = answers.footer ? `\n\n${answers.footer}` : '';
 
-    commit(`${answers.type}${scope}: ${answers.subject}${breaking}${footer}`);
+    let coauthorLines = '';
+    if (answers.coauthors) {
+      const coauthors = answers.coauthors
+        .split(',')
+        .map((author) => author.trim())
+        .filter(Boolean)
+        .map((author) => `Co-authored-by: ${author}`)
+        .join('\n');
+      coauthorLines = `\n\n${coauthors}`;
+    }
+
+    commit(`${answers.type}${scope}: ${answers.subject}${breaking}${coauthorLines}`);
   });
 }
 
